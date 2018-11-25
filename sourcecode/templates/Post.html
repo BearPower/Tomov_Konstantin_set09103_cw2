@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Drone Empyte</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"
+</head>
+<body>
+        <img id="Logo" src="{{url_for('static',filename='logo.jpg')}}"/>
+                <p>Loged in as {{name}} .</p>
+                <a href="/logout"><button type="button">Logout</button></a>
+		<form action="" method="post">
+			<br>
+			<p>Type the post here.</p>
+			<br>
+			{% if error %}
+				<p id="Error" >{{ error }}</p>
+			{% endif %}
+			<textarea id="PostBox" type="text"  name="post" value="{{ request.form.post }}"></textarea>
+			<br>
+			<input type="submit" value="Post">
+			<input type="submit" value="Add a picure"> 
+		</form>
+</body>
+</html>
+
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Drone Empyte</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"
+</head>
+<body>
+        <img id="Logo" src="{{url_for('static',filename='logo.jpg')}}"/>
+	<form action="" method="post">
+		<p>Loged in as {{name}} .</p>
+		<a href="/logout"><button type="button">Logout</button></a>
+		<a href="/Post"><button type="button">Make a POST</button></a>
+	</form>
+	<h2 id="intro" >Latest Posts.</h2>
+	{%  for row in db.cursor().execute("SELECT name, post from posts order by rowid desc") %}
+        {% set row = row|string %}
+        {% set row = row[3:] %}
+        {% set row = row[:-3] %}
+        {% set row = row|replace("\\r\\n","<br>") %}
+        {% set row = row|replace("', u'","<br><br><br>") %}
+        {% set row = "Posted by : "+row %}
+        <p id="Post">{{ row|safe }}</p>
+        {% endfor %}
+
+</body>
+</html>
+
+

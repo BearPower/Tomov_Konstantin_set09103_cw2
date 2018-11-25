@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Drone Empyte</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"
+</head>
+<body>
+	<img id="Logo" src="{{url_for('static',filename='logo.jpg')}}"/>
+	<h2 id="intro">Join us to share ideas and experiences for our favorite RC hobby.</h2>
+	<div class="container">
+        {% if validation %}
+                <p>{{ validation }}</p>
+        {% endif %}
+	<form action="" method="post">
+		<input type="text" placeholder="Username" name="username" value="{{ request.form.username }}">
+		<input type="password" placeholder="Password" name="password" value="{{ request.form.password }}">
+		<input class="btn btn-default" type="submit" value="Login">
+		<a href="/Register"><button type="button">Register</button></a>
+	</form>
+	<br>
+	<a href="https://www.google.com"><button>Recovery</button></a>
+	<br>
+	<h2 id="intro" >Latest Posts.</h2>
+	{%  for row in dbp.cursor().execute("SELECT name, post from posts order by rowid desc") %}
+        {% set row = row|string %}
+        {% set row = row[3:] %}
+        {% set row = row[:-3] %}
+        {% set row = row|replace("\\r\\n","<br>") %}
+	{% set row = row|replace("', u'","<br><br><br>") %}
+	{% set row = "Posted by : "+row %}
+        <p id="Post">{{ row|safe }}</p>
+        {% endfor %}
+</body>
+</html>

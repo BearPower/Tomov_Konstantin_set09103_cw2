@@ -1,0 +1,27 @@
+#Logo{
+	display: block;
+	width:70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+#Error{
+	color: red;
+}
+#PostBox{
+	display: block;
+	height: 300px;
+	width:85%;
+	margin-left: auto;
+	margin-right: auto;
+}
+#Post{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: LightSteelBlue;
+	text-align: center;
+	padding: 35px;
+}
+#intro{
+	text-align: center;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Drone Empire</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<img id="Logo" src="{{url_for('static', filename='logo.jpg')}}"/>
+{% if suc %}
+	<h1>Registration Sucssesfull!</h1>
+	<script>    
+     window.setTimeout(function(){
+       window.location.href = "/";
+       },3000);
+ </script>
+{% endif %}
+{% if suc == None %}
+<h1>As this site is for fan perposes no personal information in requared to join.</h1>
+<form action="" method="post">
+	<h2>User name(Dont use your real name unless you want ather users to see it!)</h2>
+	{% if errorname %}
+		<p id="Error">{{ errorname }}</p>
+	{% endif %}
+	<input type="text" placeholder="Username" name="username" value="{{ request.form.username }}">
+	<h2>Password(No special requarement)</h2>
+	{% if errorpassword %}
+		<p id="Error">{{ errorpassword }}</p>
+	{% endif %}
+	<input type="password" placeholder="Password" name="password" value="{{ request.form.password }}">
+	<h2>Repeat password(To make shore you wrote it correctly)<h2>
+	<input type="password" placeholder="RePassword" name="Repassword" value="{{ request.form.Repassword }}">
+	<h2>Email address(In case you forget the credentials)</h2>
+	{% if erroremail %}
+		<p id="Error">{{ erroremail }}</p>
+	{% endif %}
+	<input type="text" placeholder="Email" name="email" value="{{ request.form.email }}">
+	<br>
+	<br>
+	<input type="submit" value="Register">
+</form>
+{% endif %}
+</body>
+</html>
